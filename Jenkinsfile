@@ -11,11 +11,10 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            sh '''#npm install
-echo Built'''
+            sh 'echo Built'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             echo 'Side work'
           }
@@ -27,9 +26,7 @@ echo Built'''
         CI = 'true'
       }
       steps {
-        sh '''#./jenkins/scripts/test.sh
-echo Tested'''
-        waitUntil()
+        sh 'echo Tested'
       }
     }
     stage('Deliver') {

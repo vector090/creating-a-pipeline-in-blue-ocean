@@ -18,6 +18,7 @@ pipeline {
       }
       steps {
         sh '#./jenkins/scripts/test.sh'
+        waitUntil()
       }
     }
     stage('Deliver') {
@@ -28,5 +29,8 @@ pipeline {
 echo Delivered'''
       }
     }
+  }
+  environment {
+    e2 = 'v2'
   }
 }

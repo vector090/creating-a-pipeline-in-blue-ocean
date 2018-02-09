@@ -9,7 +9,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '#npm install'
+        sh '''#npm install
+echo Built'''
       }
     }
     stage('Test') {
@@ -17,13 +18,15 @@ pipeline {
         CI = 'true'
       }
       steps {
-        sh '#./jenkins/scripts/test.sh'
+        sh '''#./jenkins/scripts/test.sh
+echo Tested'''
         waitUntil()
       }
     }
     stage('Deliver') {
       steps {
-        sh '#./jenkins/scripts/deliver.sh'
+        sh '''#./jenkins/scripts/deliver.sh
+echo Delivering'''
         input 'Finished using the web site? (Click "Proceed" to continue)'
         sh '''#./jenkins/scripts/kill.sh
 echo Delivered'''
